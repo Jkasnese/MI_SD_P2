@@ -1,0 +1,48 @@
+module timeout_gen(
+    input sys_clk,
+
+    input receiving,
+    input serial_in,
+    
+    output timeout
+);
+
+localparam  sys_clk_rate = 50_000_000,
+            clk_divisor_width = log2(sys_clk_rate),
+            timeout_seconds = 60,
+            timeout_reg_width = log2(timeout_seconds);
+
+reg [clk_divisor_width-1:0] clk_divisor;
+reg seconds_clk = 1'b0;
+reg [timeout_reg_width-1:0] timeout_counter;
+reg timedout = 1'b0;
+
+assign timeout = timedout;
+
+// Sys_clk to seconds
+always @ (posedge sys_clk) begin
+    if (clk_divisor < sys_clk_rate) begin
+        clk_divisor <= clk_divisor + 1'b1;
+    end
+    else begin
+        seconds_clk <= ~seconds_clk;
+    end
+end
+
+// Timeout logic
+always @ (posedge seconds_clk) begin
+    if (receiving && serial_in == 1'b1) begin
+        if (timeout_counter < timeout_seconds) begin
+            timeout_counter <= timeout_counter + 1'b1;
+        end
+        else begin
+            timedout <= 1'b1;
+        end
+    end
+    else begin
+        timedout <= 1'b0;
+        timeout_counter <= 0;
+    end
+end
+
+endmodule
