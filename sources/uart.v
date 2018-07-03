@@ -23,9 +23,6 @@ module uart(
 	 output new_data
 );
 
-assign data_in_nios = data_in;
-assign new_data = wire_rx_done;
-
 wire uart_clk_rx;
 wire uart_clk_tx;
 
@@ -36,12 +33,16 @@ wire wire_timeout;
 wire wire_rx_busy;
 wire wire_rx_done;
 wire wire_rx_start;
+wire [7:0] wire_data_in;
 
 // TX
 reg [8:0] data_out; // msb = send_enable
 wire [7:0] wire_data_out = data_out[7:0];
 wire wire_tx_busy;
 wire wire_tx_done;
+
+assign data_in_nios = wire_data_in;
+assign new_data = wire_rx_done;
 
 always @ (posedge wire_tx_done) begin
     data_out[8] <= 1'b0;
@@ -82,7 +83,7 @@ uart_receiver rx (
 	 .data_read_nios(data_read_nios),
     .enable_clk(wire_rx_start),
     .receiving(wire_rx_busy),
-    .data_in(data_in),
+    .data_in(wire_data_in),
 	 .parity_status(parity_status),
     .data_ready(wire_rx_done)
 );

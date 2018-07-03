@@ -30,7 +30,7 @@ wire wire_parity_status;
 reg [7:0] data_received;
 reg [3:0] bits_received;
 reg [3:0] data_width;
-reg done;
+reg done = 1'b0;
 reg en_clk;
 
 assign data_ready = data_read_nios ? 1'b0 : done;
@@ -53,24 +53,37 @@ always @ (negedge serial_in or posedge done) begin
 end
 
 // Data_bits decoder to data width and data_in bus index.
-// Also buffer to the byte to be read by the nios processor
-always @ (posedge clk) begin
+always @ (*) begin
     case (data_bits)
         2'b11: begin
-            wire_data_in <= {3'b0, data_received[7:3]};
             data_width <= 4'b0101;
         end
         2'b10: begin
-            wire_data_in <= {2'b0, data_received[7:2]};
             data_width <= 4'b0110;
         end
         2'b01: begin
-            wire_data_in <= {1'b0, data_received[7:1]};
             data_width <= 4'b0111;
         end
         2'b00: begin
-            wire_data_in <= data_received;
             data_width <= 4'b1000;
+        end
+    endcase
+end
+
+// Buffer to the byte to be read by the nios processor
+always @ (posedge done) begin
+    case (data_bits)
+        2'b11: begin
+            wire_data_in <= {3'b0, data_received[7:3]};
+        end
+        2'b10: begin
+            wire_data_in <= {2'b0, data_received[7:2]};
+        end
+        2'b01: begin
+            wire_data_in <= {1'b0, data_received[7:1]};
+        end
+        2'b00: begin
+            wire_data_in <= data_received;
         end
     endcase
 end

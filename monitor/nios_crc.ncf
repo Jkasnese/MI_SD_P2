@@ -5,7 +5,7 @@
         <sample_system_title>DE0-Nano Basic Computer</sample_system_title>
         <system_sof filepath="true">../../../../../../../altera/13.0sp1/University_Program/NiosII_Computer_Systems/DE0-Nano/DE0-Nano_Basic_Computer/verilog/DE0_Nano_Basic_Computer.sof</system_sof>
         <system_jdi filepath="true"/>
-        <cable>USB-Blaster [1-1.4]</cable>
+        <cable>USB-Blaster [2-1.1]</cable>
         <processor JTAGHubInstanceID="0">CPU</processor>
         <elf_section name="text">
             <memory_device>SDRAM/s1</memory_device>

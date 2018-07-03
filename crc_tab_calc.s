@@ -98,7 +98,7 @@ stb r1, 0x0(r8)
 call __read_byte # Reads byte with new RS232 configurations
 stb r10, 0x0(r8)
 
-# Receive size of the message. First receive less significative byte, then most significative byte.
+# Receive size of the message. First receive most significative byte, then less significative byte.
 # Size of message is then stored in r8.
 call __read_byte
 mov r8, r10
@@ -125,9 +125,9 @@ andhi r4, r4, 0xFF00
 
 slli r2, r2, 0x8 # removes most significant byte
 
-call __read_byte # Gets bytes from msg into r10
-
 srli r4, r4, 0x18
+
+call __read_byte # Gets bytes from msg into r10
 
 xor r4, r4, r10 # xor bytes from msg and reg
 
