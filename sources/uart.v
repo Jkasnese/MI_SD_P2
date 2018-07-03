@@ -14,22 +14,17 @@ module uart(
     input sys_clk,
     input serial_in,
     
-	 input data_read, // TESTE TODO: to be substituted by reg to be written by Nios.
+	 input [7:0] usr_options,
+	 input data_read_nios,
 	 
     output serial_out,
-	 output [7:0] led
+	 output [7:0] data_in_nios,
+	 output parity_status,
+	 output new_data
 );
 
-
-reg [7:0] usr_options = 8'b11000000;
-wire [8:0] data_in;
-reg [8:0] reg_data_in;
-
-assign led = data_in; // TESTE
-
-always @ (posedge sys_clk) begin
-	reg_data_in <= data_in;
-end
+assign data_in_nios = data_in;
+assign new_data = wire_rx_done;
 
 wire uart_clk_rx;
 wire uart_clk_tx;
@@ -75,16 +70,6 @@ timeout_gen to(
     .timeout(wire_timeout)
 );
 
-parity_check parity(
-    .reset(reset),
-    .clk(uart_clk_rx),
-    .use_parity(usr_options[0]), //1 y, 0 n
-    .parity_type(usr_options[1]), // 1 odd 0 even
-    .serial_in(serial_in),
-    .done(wire_rx_done), // signal when receiving is done
-    .check(wire_parity_status) // 1 ok, 0 err
-);
-
 uart_receiver rx (
     .reset(reset),
     .clk(uart_clk_rx),
@@ -92,12 +77,16 @@ uart_receiver rx (
     .serial_in(serial_in),
     .handshake(usr_options[5]), // 1 y, 0 n
     .data_bits(usr_options[3:2]), // 11 5, 10 6, 01 7, 00 8;
-	 .data_read(data_read),
+    .use_parity(usr_options[0]),
+    .parity_type(usr_options[1]),
+	 .data_read_nios(data_read_nios),
     .enable_clk(wire_rx_start),
     .receiving(wire_rx_busy),
     .data_in(data_in),
+	 .parity_status(parity_status),
     .data_ready(wire_rx_done)
 );
+
 
 uart_sender tx(
     .reset(reset),
