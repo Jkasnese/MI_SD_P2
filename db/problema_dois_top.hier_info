@@ -1,0 +1,214 @@
+|problema_dois_top
+clock => uart:uart1.sys_clk
+reset => uart:uart1.reset
+switch => ~NO_FANOUT~
+serial_in => uart:uart1.serial_in
+serial_out <= uart:uart1.serial_out
+lcd[0] <= <GND>
+lcd[1] <= <GND>
+lcd[2] <= <GND>
+lcd[3] <= <GND>
+lcd[4] <= <GND>
+lcd[5] <= <GND>
+lcd[6] <= <GND>
+lcd[7] <= <GND>
+led[0] <= uart:uart1.data_in_nios[0]
+led[1] <= uart:uart1.data_in_nios[1]
+led[2] <= uart:uart1.data_in_nios[2]
+led[3] <= uart:uart1.data_in_nios[3]
+led[4] <= uart:uart1.data_in_nios[4]
+led[5] <= uart:uart1.data_in_nios[5]
+led[6] <= uart:uart1.data_in_nios[6]
+led[7] <= uart:uart1.new_data
+
+
+|problema_dois_top|uart:uart1
+reset => reset.IN4
+sys_clk => sys_clk.IN3
+serial_in => serial_in.IN2
+usr_options[0] => usr_options[0].IN1
+usr_options[1] => usr_options[1].IN1
+usr_options[2] => usr_options[2].IN1
+usr_options[3] => usr_options[3].IN1
+usr_options[4] => ~NO_FANOUT~
+usr_options[5] => usr_options[5].IN1
+usr_options[6] => usr_options[6].IN2
+usr_options[7] => usr_options[7].IN2
+data_read_nios => data_read_nios.IN1
+serial_out <= uart_sender:tx.serial_out
+data_in_nios[0] <= uart_receiver:rx.data_in
+data_in_nios[1] <= <GND>
+data_in_nios[2] <= <GND>
+data_in_nios[3] <= <GND>
+data_in_nios[4] <= <GND>
+data_in_nios[5] <= <GND>
+data_in_nios[6] <= <GND>
+data_in_nios[7] <= <GND>
+parity_status <= uart_receiver:rx.parity_status
+new_data <= uart_receiver:rx.data_ready
+
+
+|problema_dois_top|uart:uart1|clk_decoder:cd_rx
+sys_clk => out_clk.CLK
+sys_clk => counter[0].CLK
+sys_clk => counter[1].CLK
+sys_clk => counter[2].CLK
+sys_clk => counter[3].CLK
+sys_clk => counter[4].CLK
+sys_clk => counter[5].CLK
+sys_clk => counter[6].CLK
+sys_clk => counter[7].CLK
+sys_clk => counter[8].CLK
+sys_clk => counter[9].CLK
+sys_clk => counter[10].CLK
+sys_clk => counter[11].CLK
+sys_clk => counter[12].CLK
+usr_option[0] => Decoder0.IN1
+usr_option[0] => LessThan0.IN11
+usr_option[1] => Decoder0.IN0
+reset => always1.IN0
+enable => always1.IN1
+clk <= out_clk.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|problema_dois_top|uart:uart1|clk_decoder:cd_tx
+sys_clk => out_clk.CLK
+sys_clk => counter[0].CLK
+sys_clk => counter[1].CLK
+sys_clk => counter[2].CLK
+sys_clk => counter[3].CLK
+sys_clk => counter[4].CLK
+sys_clk => counter[5].CLK
+sys_clk => counter[6].CLK
+sys_clk => counter[7].CLK
+sys_clk => counter[8].CLK
+sys_clk => counter[9].CLK
+sys_clk => counter[10].CLK
+sys_clk => counter[11].CLK
+sys_clk => counter[12].CLK
+usr_option[0] => Decoder0.IN1
+usr_option[0] => LessThan0.IN11
+usr_option[1] => Decoder0.IN0
+reset => always1.IN0
+enable => always1.IN1
+clk <= out_clk.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|problema_dois_top|uart:uart1|timeout_gen:to
+sys_clk => seconds_clk.CLK
+sys_clk => clk_divisor[0].CLK
+sys_clk => clk_divisor[1].CLK
+sys_clk => clk_divisor[2].CLK
+sys_clk => clk_divisor[3].CLK
+sys_clk => clk_divisor[4].CLK
+sys_clk => clk_divisor[5].CLK
+sys_clk => clk_divisor[6].CLK
+sys_clk => clk_divisor[7].CLK
+sys_clk => clk_divisor[8].CLK
+sys_clk => clk_divisor[9].CLK
+sys_clk => clk_divisor[10].CLK
+sys_clk => clk_divisor[11].CLK
+sys_clk => clk_divisor[12].CLK
+sys_clk => clk_divisor[13].CLK
+sys_clk => clk_divisor[14].CLK
+sys_clk => clk_divisor[15].CLK
+sys_clk => clk_divisor[16].CLK
+sys_clk => clk_divisor[17].CLK
+sys_clk => clk_divisor[18].CLK
+sys_clk => clk_divisor[19].CLK
+sys_clk => clk_divisor[20].CLK
+sys_clk => clk_divisor[21].CLK
+sys_clk => clk_divisor[22].CLK
+sys_clk => clk_divisor[23].CLK
+sys_clk => clk_divisor[24].CLK
+sys_clk => clk_divisor[25].CLK
+receiving => always1.IN0
+serial_in => always1.IN1
+timeout <= timedout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|problema_dois_top|uart:uart1|uart_receiver:rx
+reset => reset.IN1
+clk => clk.IN1
+timeout => always2.IN0
+serial_in => serial_in.IN1
+handshake => ~NO_FANOUT~
+data_bits[0] => Decoder0.IN1
+data_bits[0] => Mux0.IN3
+data_bits[0] => Mux1.IN2
+data_bits[0] => Mux2.IN1
+data_bits[0] => Mux3.IN1
+data_bits[0] => Mux4.IN1
+data_bits[0] => Mux5.IN1
+data_bits[0] => Mux6.IN1
+data_bits[0] => data_width[0].DATAIN
+data_bits[1] => Decoder0.IN0
+data_bits[1] => Mux0.IN2
+data_bits[1] => Mux1.IN1
+data_bits[1] => Mux2.IN0
+data_bits[1] => Mux3.IN0
+data_bits[1] => Mux4.IN0
+data_bits[1] => Mux5.IN0
+data_bits[1] => Mux6.IN0
+use_parity => use_parity.IN1
+parity_type => parity_type.IN1
+data_read_nios => data_ready.OUTPUTSELECT
+data_read_nios => data_received[0].OUTPUTSELECT
+data_read_nios => data_received[1].OUTPUTSELECT
+data_read_nios => data_received[2].OUTPUTSELECT
+data_read_nios => data_received[3].OUTPUTSELECT
+data_read_nios => data_received[4].OUTPUTSELECT
+data_read_nios => data_received[5].OUTPUTSELECT
+data_read_nios => data_received[6].OUTPUTSELECT
+data_read_nios => data_received[7].OUTPUTSELECT
+data_read_nios => done.IN1
+data_read_nios => bits_received[3].ENA
+data_read_nios => bits_received[2].ENA
+data_read_nios => bits_received[1].ENA
+data_read_nios => bits_received[0].ENA
+enable_clk <= en_clk.DB_MAX_OUTPUT_PORT_TYPE
+receiving <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+data_in[0] <= wire_data_in[0].DB_MAX_OUTPUT_PORT_TYPE
+data_in[1] <= wire_data_in[1].DB_MAX_OUTPUT_PORT_TYPE
+data_in[2] <= wire_data_in[2].DB_MAX_OUTPUT_PORT_TYPE
+data_in[3] <= wire_data_in[3].DB_MAX_OUTPUT_PORT_TYPE
+data_in[4] <= wire_data_in[4].DB_MAX_OUTPUT_PORT_TYPE
+data_in[5] <= wire_data_in[5].DB_MAX_OUTPUT_PORT_TYPE
+data_in[6] <= wire_data_in[6].DB_MAX_OUTPUT_PORT_TYPE
+data_in[7] <= wire_data_in[7].DB_MAX_OUTPUT_PORT_TYPE
+parity_status <= parity_check:parity.check
+data_ready <= data_ready.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|problema_dois_top|uart:uart1|uart_receiver:rx|parity_check:parity
+reset => always0.IN0
+clk => status.CLK
+use_parity => check.OUTPUTSELECT
+parity_type => status.ADATA
+rx_idle => always0.IN1
+serial_in => status.ENA
+check <= check.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|problema_dois_top|uart:uart1|uart_sender:tx
+reset => always0.IN0
+clk => i[0].CLK
+clk => i[1].CLK
+clk => i[2].CLK
+clk => i[3].CLK
+clk => bit_out.CLK
+send_enable => always0.IN1
+data_to_send[0] => Mux0.IN7
+data_to_send[1] => Mux0.IN6
+data_to_send[2] => Mux0.IN5
+data_to_send[3] => Mux0.IN4
+data_to_send[4] => Mux0.IN3
+data_to_send[5] => Mux0.IN2
+data_to_send[6] => Mux0.IN1
+data_to_send[7] => Mux0.IN0
+clk_enable <= <GND>
+sending <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+done <= i[3].DB_MAX_OUTPUT_PORT_TYPE
+serial_out <= bit_out.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,14 @@
+Partition Merge Status : Successful - Sun Jun 24 22:03:39 2018
+Quartus II 64-Bit Version : 15.0.0 Build 145 04/22/2015 SJ Web Edition
+Revision Name : problema_dois_top
+Top-level Entity Name : clk_decoder
+Family : Cyclone IV E
+Total logic elements : 748
+    Total combinational functions : 549
+    Dedicated logic registers : 538
+Total registers : 538
+Total pins : 7
+Total virtual pins : 0
+Total memory bits : 32,768
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

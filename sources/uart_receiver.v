@@ -54,7 +54,7 @@ end
 
 // Data_bits decoder to data width and data_in bus index.
 // Also buffer to the byte to be read by the nios processor
-always @ (posedge done) begin
+always @ (posedge clk) begin
     case (data_bits)
         2'b11: begin
             wire_data_in <= {3'b0, data_received[7:3]};
