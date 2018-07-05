@@ -1,8 +1,6 @@
 /*
     Module to receive serial data and output paralel 8 bits data.
     If number of bits in a package is less than 8, appends 0s to MSBs to complete 8 bit bus.
-
-     TODO: Implement handshake protocol.
 */
 
 module uart_receiver (

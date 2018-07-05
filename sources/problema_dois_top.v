@@ -1,44 +1,41 @@
 module problema_dois_top(
 	input clock,
 	input reset,
-	input switch, // TESTE
 	
 	input serial_in,
 	output serial_out,
+	output cts,
 	
-	output [7:0] lcd,
-	output [7:0] led // TESTE
+	output [7:0] lcd
 );
 
-
-
+// UART
+wire wire_cts;
 wire [7:0] wire_data_in;
-wire [7:0] leds; // TESTE
-wire [31:0] wire_crc;
 //wire [7:0] wire_tx_out, usr_options;
 wire[7:0] usr_options;
-
 wire wire_data_read_nios;
+assign cts = wire_cts;
 
-assign led = {leds /*wire_new_data, wire_data_in[6:0]*/};
-
-reg [7:0] data_out, data_in;
-reg data_read_nios;
+// LCD
+wire [1:0] wire_lcd_config;
+wire wire_crc_stats;
+wire [31:0] wire_crc;
 
 	
 	nios u0 (
 		.clk_clk           (clock),           //      clk.clk
-		.lcd_export(wire_crc),
+		.lcd_config_export (wire_lcd_config), // lcd_config.export
+		.lcd_crc_export    (wire_crc),
+		.lcd_stats_export  (wire_crc_stats),  //  lcd_stats.export
 		.rs232_rx_export (wire_data_in),  // rs232_rx.in_port
 		.rs232_tx_export   (wire_tx_out),   // rs232_tx.export
-		.rx_read_in_port   (wire_new_data),   //    rx_read.in_port
-		.rx_read_out_port  (wire_data_read_nios),  //           .out_port
 		.rx_options_export(usr_options),
 		.rx_parity_export  (wire_parity_status),   //  rx_parity.export
-		.leds_export       (leds),       //       leds.export
-		.btn_export        (switch)         //        btn.export
+		.rx_read_in_port   (wire_new_data),   //    rx_read.in_port
+		.rx_read_out_port  (wire_data_read_nios),  //           .out_port
 	);
-	
+		
 	uart uart1(
     .reset(reset),
     .sys_clk(clock),
@@ -47,6 +44,7 @@ reg data_read_nios;
 	 .usr_options(usr_options),
 	 .data_read_nios(wire_data_read_nios), // TESTE TODO: to be substituted by reg to be written by Nios.
 	 
+	.cts(wire_cts),
     .serial_out(serial_out),
 	 .data_in_nios(wire_data_in),
 	 .parity_status(wire_parity_status),
@@ -54,6 +52,16 @@ reg data_read_nios;
 	);
 
 
-//lcd lcd();
+	/*lcd lcd(
+		.Reset(reset),
+		.Clock(clock),
+		.usr_op(wire_lcd_config),
+		.crc(wire_crc),
+		.crc_status(wire_crc_stats),
+		.lcd_data(),
+		.lcd_en(),
+		.lcd_rs(),
+		.lcd_rw()
+	);*/
 	
 endmodule

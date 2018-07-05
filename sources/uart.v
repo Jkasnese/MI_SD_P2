@@ -17,6 +17,7 @@ module uart(
 	 input [7:0] usr_options,
 	 input data_read_nios,
 	 
+    output cts,
     output serial_out,
 	 output [7:0] data_in_nios,
 	 output parity_status,
@@ -43,6 +44,7 @@ wire wire_tx_done;
 
 assign data_in_nios = wire_data_in;
 assign new_data = wire_rx_done;
+assign cts = usr_options[5] ? (!wire_rx_busy & !wire_rx_done) : 1'b1;
 
 always @ (posedge wire_tx_done) begin
     data_out[8] <= 1'b0;

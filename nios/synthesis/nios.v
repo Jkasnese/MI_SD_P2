@@ -4,10 +4,10 @@
 
 `timescale 1 ps / 1 ps
 module nios (
-		input  wire        btn_export,        //        btn.export
 		input  wire        clk_clk,           //        clk.clk
-		output wire [31:0] lcd_export,        //        lcd.export
-		output wire [7:0]  leds_export,       //       leds.export
+		output wire [1:0]  lcd_config_export, // lcd_config.export
+		output wire [31:0] lcd_crc_export,    //    lcd_crc.export
+		output wire        lcd_stats_export,  //  lcd_stats.export
 		input  wire [7:0]  rs232_rx_export,   //   rs232_rx.export
 		output wire [7:0]  rs232_tx_export,   //   rs232_tx.export
 		output wire [7:0]  rx_options_export, // rx_options.export
@@ -58,11 +58,6 @@ module nios (
 	wire   [1:0] mm_interconnect_0_rs232_tx_s1_address;                       // mm_interconnect_0:rs232_tx_s1_address -> rs232_tx:address
 	wire         mm_interconnect_0_rs232_tx_s1_write;                         // mm_interconnect_0:rs232_tx_s1_write -> rs232_tx:write_n
 	wire  [31:0] mm_interconnect_0_rs232_tx_s1_writedata;                     // mm_interconnect_0:rs232_tx_s1_writedata -> rs232_tx:writedata
-	wire         mm_interconnect_0_lcd_s1_chipselect;                         // mm_interconnect_0:lcd_s1_chipselect -> lcd:chipselect
-	wire  [31:0] mm_interconnect_0_lcd_s1_readdata;                           // lcd:readdata -> mm_interconnect_0:lcd_s1_readdata
-	wire   [1:0] mm_interconnect_0_lcd_s1_address;                            // mm_interconnect_0:lcd_s1_address -> lcd:address
-	wire         mm_interconnect_0_lcd_s1_write;                              // mm_interconnect_0:lcd_s1_write -> lcd:write_n
-	wire  [31:0] mm_interconnect_0_lcd_s1_writedata;                          // mm_interconnect_0:lcd_s1_writedata -> lcd:writedata
 	wire         mm_interconnect_0_rx_read_s1_chipselect;                     // mm_interconnect_0:rx_read_s1_chipselect -> rx_read:chipselect
 	wire  [31:0] mm_interconnect_0_rx_read_s1_readdata;                       // rx_read:readdata -> mm_interconnect_0:rx_read_s1_readdata
 	wire   [1:0] mm_interconnect_0_rx_read_s1_address;                        // mm_interconnect_0:rx_read_s1_address -> rx_read:address
@@ -75,25 +70,25 @@ module nios (
 	wire  [31:0] mm_interconnect_0_rx_options_s1_writedata;                   // mm_interconnect_0:rx_options_s1_writedata -> rx_options:writedata
 	wire  [31:0] mm_interconnect_0_rx_parity_s1_readdata;                     // rx_parity:readdata -> mm_interconnect_0:rx_parity_s1_readdata
 	wire   [1:0] mm_interconnect_0_rx_parity_s1_address;                      // mm_interconnect_0:rx_parity_s1_address -> rx_parity:address
-	wire         mm_interconnect_0_leds_s1_chipselect;                        // mm_interconnect_0:leds_s1_chipselect -> leds:chipselect
-	wire  [31:0] mm_interconnect_0_leds_s1_readdata;                          // leds:readdata -> mm_interconnect_0:leds_s1_readdata
-	wire   [1:0] mm_interconnect_0_leds_s1_address;                           // mm_interconnect_0:leds_s1_address -> leds:address
-	wire         mm_interconnect_0_leds_s1_write;                             // mm_interconnect_0:leds_s1_write -> leds:write_n
-	wire  [31:0] mm_interconnect_0_leds_s1_writedata;                         // mm_interconnect_0:leds_s1_writedata -> leds:writedata
-	wire  [31:0] mm_interconnect_0_btn_s1_readdata;                           // btn:readdata -> mm_interconnect_0:btn_s1_readdata
-	wire   [1:0] mm_interconnect_0_btn_s1_address;                            // mm_interconnect_0:btn_s1_address -> btn:address
+	wire         mm_interconnect_0_lcd_crc_s1_chipselect;                     // mm_interconnect_0:lcd_crc_s1_chipselect -> lcd_crc:chipselect
+	wire  [31:0] mm_interconnect_0_lcd_crc_s1_readdata;                       // lcd_crc:readdata -> mm_interconnect_0:lcd_crc_s1_readdata
+	wire   [1:0] mm_interconnect_0_lcd_crc_s1_address;                        // mm_interconnect_0:lcd_crc_s1_address -> lcd_crc:address
+	wire         mm_interconnect_0_lcd_crc_s1_write;                          // mm_interconnect_0:lcd_crc_s1_write -> lcd_crc:write_n
+	wire  [31:0] mm_interconnect_0_lcd_crc_s1_writedata;                      // mm_interconnect_0:lcd_crc_s1_writedata -> lcd_crc:writedata
+	wire         mm_interconnect_0_lcd_stats_s1_chipselect;                   // mm_interconnect_0:lcd_stats_s1_chipselect -> lcd_stats:chipselect
+	wire  [31:0] mm_interconnect_0_lcd_stats_s1_readdata;                     // lcd_stats:readdata -> mm_interconnect_0:lcd_stats_s1_readdata
+	wire   [1:0] mm_interconnect_0_lcd_stats_s1_address;                      // mm_interconnect_0:lcd_stats_s1_address -> lcd_stats:address
+	wire         mm_interconnect_0_lcd_stats_s1_write;                        // mm_interconnect_0:lcd_stats_s1_write -> lcd_stats:write_n
+	wire  [31:0] mm_interconnect_0_lcd_stats_s1_writedata;                    // mm_interconnect_0:lcd_stats_s1_writedata -> lcd_stats:writedata
+	wire         mm_interconnect_0_lcd_config_s1_chipselect;                  // mm_interconnect_0:lcd_config_s1_chipselect -> lcd_config:chipselect
+	wire  [31:0] mm_interconnect_0_lcd_config_s1_readdata;                    // lcd_config:readdata -> mm_interconnect_0:lcd_config_s1_readdata
+	wire   [1:0] mm_interconnect_0_lcd_config_s1_address;                     // mm_interconnect_0:lcd_config_s1_address -> lcd_config:address
+	wire         mm_interconnect_0_lcd_config_s1_write;                       // mm_interconnect_0:lcd_config_s1_write -> lcd_config:write_n
+	wire  [31:0] mm_interconnect_0_lcd_config_s1_writedata;                   // mm_interconnect_0:lcd_config_s1_writedata -> lcd_config:writedata
 	wire         irq_mapper_receiver0_irq;                                    // jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                        // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [btn:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, lcd:reset_n, leds:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, rs232_rx:reset_n, rs232_tx:reset_n, rst_translator:in_reset, rx_options:reset_n, rx_parity:reset_n, rx_read:reset_n]
+	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [irq_mapper:reset, jtag_uart_0:rst_n, lcd_config:reset_n, lcd_crc:reset_n, lcd_stats:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, rs232_rx:reset_n, rs232_tx:reset_n, rst_translator:in_reset, rx_options:reset_n, rx_parity:reset_n, rx_read:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
-
-	nios_btn btn (
-		.clk      (clk_clk),                           //                 clk.clk
-		.reset_n  (~rst_controller_reset_out_reset),   //               reset.reset_n
-		.address  (mm_interconnect_0_btn_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_btn_s1_readdata), //                    .readdata
-		.in_port  (btn_export)                         // external_connection.export
-	);
 
 	nios_jtag_uart_0 jtag_uart_0 (
 		.clk            (clk_clk),                                                     //               clk.clk
@@ -108,26 +103,37 @@ module nios (
 		.av_irq         (irq_mapper_receiver0_irq)                                     //               irq.irq
 	);
 
-	nios_lcd lcd (
-		.clk        (clk_clk),                             //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),     //               reset.reset_n
-		.address    (mm_interconnect_0_lcd_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_lcd_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_lcd_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_lcd_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_lcd_s1_readdata),   //                    .readdata
-		.out_port   (lcd_export)                           // external_connection.export
+	nios_lcd_config lcd_config (
+		.clk        (clk_clk),                                    //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),            //               reset.reset_n
+		.address    (mm_interconnect_0_lcd_config_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_lcd_config_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_lcd_config_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_lcd_config_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_lcd_config_s1_readdata),   //                    .readdata
+		.out_port   (lcd_config_export)                           // external_connection.export
 	);
 
-	nios_leds leds (
-		.clk        (clk_clk),                              //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),      //               reset.reset_n
-		.address    (mm_interconnect_0_leds_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_leds_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_leds_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_leds_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_leds_s1_readdata),   //                    .readdata
-		.out_port   (leds_export)                           // external_connection.export
+	nios_lcd_crc lcd_crc (
+		.clk        (clk_clk),                                 //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),         //               reset.reset_n
+		.address    (mm_interconnect_0_lcd_crc_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_lcd_crc_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_lcd_crc_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_lcd_crc_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_lcd_crc_s1_readdata),   //                    .readdata
+		.out_port   (lcd_crc_export)                           // external_connection.export
+	);
+
+	nios_lcd_stats lcd_stats (
+		.clk        (clk_clk),                                   //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),           //               reset.reset_n
+		.address    (mm_interconnect_0_lcd_stats_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_lcd_stats_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_lcd_stats_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_lcd_stats_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_lcd_stats_s1_readdata),   //                    .readdata
+		.out_port   (lcd_stats_export)                           // external_connection.export
 	);
 
 	nios_nios2_gen2_0 nios2_gen2_0 (
@@ -180,7 +186,7 @@ module nios (
 		.in_port  (rs232_rx_export)                         // external_connection.export
 	);
 
-	nios_leds rs232_tx (
+	nios_rs232_tx rs232_tx (
 		.clk        (clk_clk),                                  //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),          //               reset.reset_n
 		.address    (mm_interconnect_0_rs232_tx_s1_address),    //                  s1.address
@@ -191,7 +197,7 @@ module nios (
 		.out_port   (rs232_tx_export)                           // external_connection.export
 	);
 
-	nios_leds rx_options (
+	nios_rs232_tx rx_options (
 		.clk        (clk_clk),                                    //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),            //               reset.reset_n
 		.address    (mm_interconnect_0_rx_options_s1_address),    //                  s1.address
@@ -202,7 +208,7 @@ module nios (
 		.out_port   (rx_options_export)                           // external_connection.export
 	);
 
-	nios_btn rx_parity (
+	nios_rx_parity rx_parity (
 		.clk      (clk_clk),                                 //                 clk.clk
 		.reset_n  (~rst_controller_reset_out_reset),         //               reset.reset_n
 		.address  (mm_interconnect_0_rx_parity_s1_address),  //                  s1.address
@@ -237,8 +243,6 @@ module nios (
 		.nios2_gen2_0_instruction_master_waitrequest    (nios2_gen2_0_instruction_master_waitrequest),                 //                                         .waitrequest
 		.nios2_gen2_0_instruction_master_read           (nios2_gen2_0_instruction_master_read),                        //                                         .read
 		.nios2_gen2_0_instruction_master_readdata       (nios2_gen2_0_instruction_master_readdata),                    //                                         .readdata
-		.btn_s1_address                                 (mm_interconnect_0_btn_s1_address),                            //                                   btn_s1.address
-		.btn_s1_readdata                                (mm_interconnect_0_btn_s1_readdata),                           //                                         .readdata
 		.jtag_uart_0_avalon_jtag_slave_address          (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address),     //            jtag_uart_0_avalon_jtag_slave.address
 		.jtag_uart_0_avalon_jtag_slave_write            (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write),       //                                         .write
 		.jtag_uart_0_avalon_jtag_slave_read             (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read),        //                                         .read
@@ -246,16 +250,21 @@ module nios (
 		.jtag_uart_0_avalon_jtag_slave_writedata        (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata),   //                                         .writedata
 		.jtag_uart_0_avalon_jtag_slave_waitrequest      (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest), //                                         .waitrequest
 		.jtag_uart_0_avalon_jtag_slave_chipselect       (mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect),  //                                         .chipselect
-		.lcd_s1_address                                 (mm_interconnect_0_lcd_s1_address),                            //                                   lcd_s1.address
-		.lcd_s1_write                                   (mm_interconnect_0_lcd_s1_write),                              //                                         .write
-		.lcd_s1_readdata                                (mm_interconnect_0_lcd_s1_readdata),                           //                                         .readdata
-		.lcd_s1_writedata                               (mm_interconnect_0_lcd_s1_writedata),                          //                                         .writedata
-		.lcd_s1_chipselect                              (mm_interconnect_0_lcd_s1_chipselect),                         //                                         .chipselect
-		.leds_s1_address                                (mm_interconnect_0_leds_s1_address),                           //                                  leds_s1.address
-		.leds_s1_write                                  (mm_interconnect_0_leds_s1_write),                             //                                         .write
-		.leds_s1_readdata                               (mm_interconnect_0_leds_s1_readdata),                          //                                         .readdata
-		.leds_s1_writedata                              (mm_interconnect_0_leds_s1_writedata),                         //                                         .writedata
-		.leds_s1_chipselect                             (mm_interconnect_0_leds_s1_chipselect),                        //                                         .chipselect
+		.lcd_config_s1_address                          (mm_interconnect_0_lcd_config_s1_address),                     //                            lcd_config_s1.address
+		.lcd_config_s1_write                            (mm_interconnect_0_lcd_config_s1_write),                       //                                         .write
+		.lcd_config_s1_readdata                         (mm_interconnect_0_lcd_config_s1_readdata),                    //                                         .readdata
+		.lcd_config_s1_writedata                        (mm_interconnect_0_lcd_config_s1_writedata),                   //                                         .writedata
+		.lcd_config_s1_chipselect                       (mm_interconnect_0_lcd_config_s1_chipselect),                  //                                         .chipselect
+		.lcd_crc_s1_address                             (mm_interconnect_0_lcd_crc_s1_address),                        //                               lcd_crc_s1.address
+		.lcd_crc_s1_write                               (mm_interconnect_0_lcd_crc_s1_write),                          //                                         .write
+		.lcd_crc_s1_readdata                            (mm_interconnect_0_lcd_crc_s1_readdata),                       //                                         .readdata
+		.lcd_crc_s1_writedata                           (mm_interconnect_0_lcd_crc_s1_writedata),                      //                                         .writedata
+		.lcd_crc_s1_chipselect                          (mm_interconnect_0_lcd_crc_s1_chipselect),                     //                                         .chipselect
+		.lcd_stats_s1_address                           (mm_interconnect_0_lcd_stats_s1_address),                      //                             lcd_stats_s1.address
+		.lcd_stats_s1_write                             (mm_interconnect_0_lcd_stats_s1_write),                        //                                         .write
+		.lcd_stats_s1_readdata                          (mm_interconnect_0_lcd_stats_s1_readdata),                     //                                         .readdata
+		.lcd_stats_s1_writedata                         (mm_interconnect_0_lcd_stats_s1_writedata),                    //                                         .writedata
+		.lcd_stats_s1_chipselect                        (mm_interconnect_0_lcd_stats_s1_chipselect),                   //                                         .chipselect
 		.nios2_gen2_0_debug_mem_slave_address           (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_address),      //             nios2_gen2_0_debug_mem_slave.address
 		.nios2_gen2_0_debug_mem_slave_write             (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_write),        //                                         .write
 		.nios2_gen2_0_debug_mem_slave_read              (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_read),         //                                         .read

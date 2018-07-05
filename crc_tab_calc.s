@@ -129,6 +129,10 @@ srli r4, r4, 0x18
 
 call __read_byte # Gets bytes from msg into r10
 
+mov r21, r10 # r21 holds the last received byte. r22 holds the last received word (crc)
+slli r22, r22, 0x8
+or r22, r22, r21
+
 xor r4, r4, r10 # xor bytes from msg and reg
 
 slli r4, r4, 0x2 # each table position has 4 bytes, so multiply by 4
@@ -144,46 +148,26 @@ addi r3, r3, 0x1 # increment iteration counter
 br crc_loop
 
 crc2lcd:
-#movia r3, 0x3090 # Second argument is the address of the LCD in the Nios.
-#stw r2, 0x0(r3)
-#br begin_transmission
+# LCD Config
+movia r3, 0x3090 # Second argument is the address of the LCD in the Nios.
+movia r5, 0x3080 # Second argument is the address of the CRC Status in the Nios core.
+movia r6, 0x3070 # Second argument is the address of the LCD Config in the Nios core.
+movia r7, 0x0 # LCD Configuration. LSB = cursor direction (0 left / 1 right). MSB = Number of lines (0 one line / 1 two lines)
+stw r7, 0x0(r6)
 
-movia r20, 0x3080 # LED address on nios_project_13
+# r22 contains the received crc. r2 contains the calculated crc.
+beq r22, r2, crcok
 
-stw r2, 0x10(r20)
+movia r4, 0x1
 
-# Reading button in busy waiting
+br store_crc
 
-# r13 gets btn last state
-mov r13, r0
+crcok:
+mov r4, r0
 
-# r12 gets btn current state
-read_btn:
-  ldb r12, 0x00(r20) # BTN address on nios_project_13
+store_crc:
+stw r2, 0x0(r3)
+stw r4, 0x0(r5)
+br begin_transmission
 
-beq r12, r13, read_btn
-
-mov r13, r12
-
-# Little logic debounce (in case the kit doesnt have)
-
-movia r14, 0xFFFFF # r14 delay timing
-
-delay:
-subi r14, r14, 0x1
-bne r14, r0, delay
-
-# If new read is equal to previous, means signal is stable
-
-ldb r14, 0x00(r20)
-
-bne r14, r12, read_btn
-
-beq r12, r0, read_btn
-
-roli r2, r2, 0x4
-
-stw r2, 0x10(r20) # LEDs address on nios_project_13
-
-br read_btn
 

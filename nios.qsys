@@ -17,22 +17,6 @@
          type = "String";
       }
    }
-   element btn
-   {
-      datum _sortIndex
-      {
-         value = "11";
-         type = "int";
-      }
-   }
-   element btn.s1
-   {
-      datum baseAddress
-      {
-         value = "12416";
-         type = "String";
-      }
-   }
    element clk_0
    {
       datum _sortIndex
@@ -51,29 +35,60 @@
    }
    element jtag_uart_0.avalon_jtag_slave
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "12552";
          type = "String";
       }
    }
-   element lcd
+   element lcd_config
    {
       datum _sortIndex
       {
-         value = "6";
+         value = "11";
          type = "int";
       }
    }
-   element lcd.s1
+   element lcd_config.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
-         value = "12496";
+         value = "12400";
          type = "String";
       }
    }
-   element leds
+   element lcd_crc
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element lcd_crc.s1
+   {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
+      datum baseAddress
+      {
+         value = "12432";
+         type = "String";
+      }
+   }
+   element lcd_stats
    {
       datum _sortIndex
       {
@@ -81,11 +96,16 @@
          type = "int";
       }
    }
-   element leds.s1
+   element lcd_stats.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
-         value = "12432";
+         value = "12416";
          type = "String";
       }
    }
@@ -99,6 +119,11 @@
    }
    element nios2_gen2_0.debug_mem_slave
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "10240";
@@ -131,6 +156,11 @@
    }
    element rs232_rx.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "12528";
@@ -147,9 +177,14 @@
    }
    element rs232_tx.s1
    {
+      datum _lockedAddress
+      {
+         value = "0";
+         type = "boolean";
+      }
       datum baseAddress
       {
-         value = "12512";
+         value = "2160";
          type = "String";
       }
    }
@@ -157,12 +192,17 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "7";
          type = "int";
       }
    }
    element rx_options.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "12464";
@@ -173,7 +213,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "8";
          type = "int";
       }
    }
@@ -181,7 +221,7 @@
    {
       datum baseAddress
       {
-         value = "12448";
+         value = "2144";
          type = "String";
       }
    }
@@ -189,12 +229,17 @@
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "6";
          type = "int";
       }
    }
    element rx_read.s1
    {
+      datum _lockedAddress
+      {
+         value = "1";
+         type = "boolean";
+      }
       datum baseAddress
       {
          value = "12480";
@@ -204,9 +249,9 @@
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
- <parameter name="device" value="EP4CE22F17C8" />
+ <parameter name="device" value="EP4CE22F17C6" />
  <parameter name="deviceFamily" value="Cyclone IV E" />
- <parameter name="deviceSpeedGrade" value="8" />
+ <parameter name="deviceSpeedGrade" value="6" />
  <parameter name="fabricMode" value="QSYS" />
  <parameter name="generateLegacySim" value="false" />
  <parameter name="generationId" value="0" />
@@ -222,20 +267,20 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
- <interface
-   name="btn"
-   internal="btn.external_connection"
-   type="conduit"
-   dir="end" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="lcd"
-   internal="lcd.external_connection"
+   name="lcd_config"
+   internal="lcd_config.external_connection"
    type="conduit"
    dir="end" />
  <interface
-   name="leds"
-   internal="leds.external_connection"
+   name="lcd_crc"
+   internal="lcd_crc.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="lcd_stats"
+   internal="lcd_stats.external_connection"
    type="conduit"
    dir="end" />
  <interface
@@ -263,20 +308,6 @@
    internal="rx_read.external_connection"
    type="conduit"
    dir="end" />
- <module name="btn" kind="altera_avalon_pio" version="15.0" enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Input" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="1" />
- </module>
  <module name="clk_0" kind="clock_source" version="15.0" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -302,7 +333,21 @@
   <parameter name="writeBufferDepth" value="64" />
   <parameter name="writeIRQThreshold" value="8" />
  </module>
- <module name="lcd" kind="altera_avalon_pio" version="15.0" enabled="1">
+ <module name="lcd_config" kind="altera_avalon_pio" version="15.0" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="2" />
+ </module>
+ <module name="lcd_crc" kind="altera_avalon_pio" version="15.0" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -316,7 +361,7 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="32" />
  </module>
- <module name="leds" kind="altera_avalon_pio" version="15.0" enabled="1">
+ <module name="lcd_stats" kind="altera_avalon_pio" version="15.0" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -328,7 +373,7 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
+  <parameter name="width" value="1" />
  </module>
  <module
    name="nios2_gen2_0"
@@ -337,8 +382,8 @@
    enabled="1">
   <parameter name="AUTO_CLK_CLOCK_DOMAIN" value="1" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="1" />
-  <parameter name="AUTO_DEVICE" value="EP4CE22F17C8" />
-  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="8" />
+  <parameter name="AUTO_DEVICE" value="EP4CE22F17C6" />
+  <parameter name="AUTO_DEVICE_SPEEDGRADE" value="6" />
   <parameter name="bht_ramBlockType" value="Automatic" />
   <parameter name="breakOffset" value="32" />
   <parameter name="breakSlave" value="None" />
@@ -354,7 +399,7 @@
   <parameter name="dataAddrWidth" value="14" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x800' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x2800' end='0x3000' /><slave name='btn.s1' start='0x3080' end='0x3090' /><slave name='leds.s1' start='0x3090' end='0x30A0' /><slave name='rx_parity.s1' start='0x30A0' end='0x30B0' /><slave name='rx_options.s1' start='0x30B0' end='0x30C0' /><slave name='rx_read.s1' start='0x30C0' end='0x30D0' /><slave name='lcd.s1' start='0x30D0' end='0x30E0' /><slave name='rs232_tx.s1' start='0x30E0' end='0x30F0' /><slave name='rs232_rx.s1' start='0x30F0' end='0x3100' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x3108' end='0x3110' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x800' /><slave name='rx_parity.s1' start='0x860' end='0x870' /><slave name='rs232_tx.s1' start='0x870' end='0x880' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x2800' end='0x3000' /><slave name='lcd_config.s1' start='0x3070' end='0x3080' /><slave name='lcd_stats.s1' start='0x3080' end='0x3090' /><slave name='lcd_crc.s1' start='0x3090' end='0x30A0' /><slave name='rx_options.s1' start='0x30B0' end='0x30C0' /><slave name='rx_read.s1' start='0x30C0' end='0x30D0' /><slave name='rs232_rx.s1' start='0x30F0' end='0x3100' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x3108' end='0x3110' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -393,7 +438,7 @@
   <parameter name="icache_tagramBlockType" value="Automatic" />
   <parameter name="impl" value="Tiny" />
   <parameter name="instAddrWidth" value="14" />
-  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x800' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x2800' end='0x3000' /><slave name='btn.s1' start='0x3080' end='0x3090' /><slave name='leds.s1' start='0x3090' end='0x30A0' /><slave name='rx_parity.s1' start='0x30A0' end='0x30B0' /><slave name='rx_options.s1' start='0x30B0' end='0x30C0' /><slave name='rx_read.s1' start='0x30C0' end='0x30D0' /><slave name='lcd.s1' start='0x30D0' end='0x30E0' /><slave name='rs232_tx.s1' start='0x30E0' end='0x30F0' /><slave name='rs232_rx.s1' start='0x30F0' end='0x3100' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x3108' end='0x3110' /></address-map>]]></parameter>
+  <parameter name="instSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x0' end='0x800' /><slave name='rx_parity.s1' start='0x860' end='0x870' /><slave name='rs232_tx.s1' start='0x870' end='0x880' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x2800' end='0x3000' /><slave name='lcd_config.s1' start='0x3070' end='0x3080' /><slave name='lcd_stats.s1' start='0x3080' end='0x3090' /><slave name='lcd_crc.s1' start='0x3090' end='0x30A0' /><slave name='rx_options.s1' start='0x30B0' end='0x30C0' /><slave name='rx_read.s1' start='0x30C0' end='0x30D0' /><slave name='rs232_rx.s1' start='0x30F0' end='0x3100' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x3108' end='0x3110' /></address-map>]]></parameter>
   <parameter name="instructionMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="instructionMasterHighPerformanceMapParam" value="" />
   <parameter name="instruction_master_high_performance_paddr_base" value="0" />
@@ -516,7 +561,7 @@
    version="15.0"
    enabled="1">
   <parameter name="allowInSystemMemoryContentEditor" value="false" />
-  <parameter name="autoInitializationFileName">nios_onchip_memory2_0</parameter>
+  <parameter name="autoInitializationFileName">$${FILENAME}_onchip_memory2_0</parameter>
   <parameter name="blockType" value="AUTO" />
   <parameter name="copyInitFile" value="false" />
   <parameter name="dataWidth" value="32" />
@@ -651,16 +696,7 @@
    start="nios2_gen2_0.data_master"
    end="rs232_tx.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x30e0" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="15.0"
-   start="nios2_gen2_0.data_master"
-   end="lcd.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x30d0" />
+  <parameter name="baseAddress" value="0x0870" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -687,14 +723,14 @@
    start="nios2_gen2_0.data_master"
    end="rx_parity.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x30a0" />
+  <parameter name="baseAddress" value="0x0860" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
    kind="avalon"
    version="15.0"
    start="nios2_gen2_0.data_master"
-   end="leds.s1">
+   end="lcd_crc.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3090" />
   <parameter name="defaultConnection" value="false" />
@@ -703,9 +739,18 @@
    kind="avalon"
    version="15.0"
    start="nios2_gen2_0.data_master"
-   end="btn.s1">
+   end="lcd_stats.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3080" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="15.0"
+   start="nios2_gen2_0.data_master"
+   end="lcd_config.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x3070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -750,16 +795,7 @@
    start="nios2_gen2_0.instruction_master"
    end="rs232_tx.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x30e0" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="15.0"
-   start="nios2_gen2_0.instruction_master"
-   end="lcd.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x30d0" />
+  <parameter name="baseAddress" value="0x0870" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -786,14 +822,14 @@
    start="nios2_gen2_0.instruction_master"
    end="rx_parity.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x30a0" />
+  <parameter name="baseAddress" value="0x0860" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
    kind="avalon"
    version="15.0"
    start="nios2_gen2_0.instruction_master"
-   end="leds.s1">
+   end="lcd_crc.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3090" />
   <parameter name="defaultConnection" value="false" />
@@ -802,21 +838,30 @@
    kind="avalon"
    version="15.0"
    start="nios2_gen2_0.instruction_master"
-   end="btn.s1">
+   end="lcd_stats.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x3080" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="15.0"
+   start="nios2_gen2_0.instruction_master"
+   end="lcd_config.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x3070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="15.0" start="clk_0.clk" end="jtag_uart_0.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="rs232_tx.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="rs232_rx.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="nios2_gen2_0.clk" />
- <connection kind="clock" version="15.0" start="clk_0.clk" end="lcd.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="rx_read.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="rx_options.clk" />
  <connection kind="clock" version="15.0" start="clk_0.clk" end="rx_parity.clk" />
- <connection kind="clock" version="15.0" start="clk_0.clk" end="leds.clk" />
- <connection kind="clock" version="15.0" start="clk_0.clk" end="btn.clk" />
+ <connection kind="clock" version="15.0" start="clk_0.clk" end="lcd_crc.clk" />
+ <connection kind="clock" version="15.0" start="clk_0.clk" end="lcd_stats.clk" />
+ <connection kind="clock" version="15.0" start="clk_0.clk" end="lcd_config.clk" />
  <connection
    kind="clock"
    version="15.0"
@@ -849,7 +894,6 @@
    version="15.0"
    start="clk_0.clk_reset"
    end="jtag_uart_0.reset" />
- <connection kind="reset" version="15.0" start="clk_0.clk_reset" end="lcd.reset" />
  <connection
    kind="reset"
    version="15.0"
@@ -865,8 +909,21 @@
    version="15.0"
    start="clk_0.clk_reset"
    end="rx_parity.reset" />
- <connection kind="reset" version="15.0" start="clk_0.clk_reset" end="leds.reset" />
- <connection kind="reset" version="15.0" start="clk_0.clk_reset" end="btn.reset" />
+ <connection
+   kind="reset"
+   version="15.0"
+   start="clk_0.clk_reset"
+   end="lcd_crc.reset" />
+ <connection
+   kind="reset"
+   version="15.0"
+   start="clk_0.clk_reset"
+   end="lcd_stats.reset" />
+ <connection
+   kind="reset"
+   version="15.0"
+   start="clk_0.clk_reset"
+   end="lcd_config.reset" />
  <connection
    kind="reset"
    version="15.0"
