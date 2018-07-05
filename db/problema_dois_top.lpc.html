@@ -16,6 +16,102 @@
 <TH>Output only Bidir</TH>
 </TR>
 <TR >
+<TD >lcd|lcdw</TD>
+<TD >90</TD>
+<TD >17</TD>
+<TD >80</TD>
+<TD >17</TD>
+<TD >9</TD>
+<TD >17</TD>
+<TD >17</TD>
+<TD >17</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >lcd|ctrl</TD>
+<TD >4</TD>
+<TD >3</TD>
+<TD >4</TD>
+<TD >3</TD>
+<TD >12</TD>
+<TD >3</TD>
+<TD >3</TD>
+<TD >3</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >lcd|statsdec</TD>
+<TD >1</TD>
+<TD >9</TD>
+<TD >0</TD>
+<TD >9</TD>
+<TD >16</TD>
+<TD >9</TD>
+<TD >9</TD>
+<TD >9</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >lcd|dec</TD>
+<TD >32</TD>
+<TD >64</TD>
+<TD >32</TD>
+<TD >64</TD>
+<TD >64</TD>
+<TD >64</TD>
+<TD >64</TD>
+<TD >64</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >lcd|clkd</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >lcd</TD>
+<TD >37</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >12</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
 <TD >uart1|tx</TD>
 <TD >11</TD>
 <TD >8</TD>
@@ -117,7 +213,7 @@
 <TD >0</TD>
 <TD >1</TD>
 <TD >0</TD>
-<TD >11</TD>
+<TD >12</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -1792,7 +1888,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|btn_s1_agent_rsp_fifo</TD>
+<TD >u0|mm_interconnect_0|lcd_config_s1_agent_rsp_fifo</TD>
 <TD >138</TD>
 <TD >39</TD>
 <TD >0</TD>
@@ -1808,7 +1904,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|btn_s1_agent|uncompressor</TD>
+<TD >u0|mm_interconnect_0|lcd_config_s1_agent|uncompressor</TD>
 <TD >30</TD>
 <TD >1</TD>
 <TD >0</TD>
@@ -1824,7 +1920,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|btn_s1_agent</TD>
+<TD >u0|mm_interconnect_0|lcd_config_s1_agent</TD>
 <TD >280</TD>
 <TD >39</TD>
 <TD >48</TD>
@@ -1840,7 +1936,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|leds_s1_agent_rsp_fifo</TD>
+<TD >u0|mm_interconnect_0|lcd_stats_s1_agent_rsp_fifo</TD>
 <TD >138</TD>
 <TD >39</TD>
 <TD >0</TD>
@@ -1856,7 +1952,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|leds_s1_agent|uncompressor</TD>
+<TD >u0|mm_interconnect_0|lcd_stats_s1_agent|uncompressor</TD>
 <TD >30</TD>
 <TD >1</TD>
 <TD >0</TD>
@@ -1872,7 +1968,55 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|leds_s1_agent</TD>
+<TD >u0|mm_interconnect_0|lcd_stats_s1_agent</TD>
+<TD >280</TD>
+<TD >39</TD>
+<TD >48</TD>
+<TD >39</TD>
+<TD >286</TD>
+<TD >39</TD>
+<TD >39</TD>
+<TD >39</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >u0|mm_interconnect_0|lcd_crc_s1_agent_rsp_fifo</TD>
+<TD >138</TD>
+<TD >39</TD>
+<TD >0</TD>
+<TD >39</TD>
+<TD >97</TD>
+<TD >39</TD>
+<TD >39</TD>
+<TD >39</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >u0|mm_interconnect_0|lcd_crc_s1_agent|uncompressor</TD>
+<TD >30</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >1</TD>
+<TD >28</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >1</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >u0|mm_interconnect_0|lcd_crc_s1_agent</TD>
 <TD >280</TD>
 <TD >39</TD>
 <TD >48</TD>
@@ -2017,54 +2161,6 @@
 </TR>
 <TR >
 <TD >u0|mm_interconnect_0|rx_read_s1_agent</TD>
-<TD >280</TD>
-<TD >39</TD>
-<TD >48</TD>
-<TD >39</TD>
-<TD >286</TD>
-<TD >39</TD>
-<TD >39</TD>
-<TD >39</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >u0|mm_interconnect_0|lcd_s1_agent_rsp_fifo</TD>
-<TD >138</TD>
-<TD >39</TD>
-<TD >0</TD>
-<TD >39</TD>
-<TD >97</TD>
-<TD >39</TD>
-<TD >39</TD>
-<TD >39</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >u0|mm_interconnect_0|lcd_s1_agent|uncompressor</TD>
-<TD >30</TD>
-<TD >1</TD>
-<TD >0</TD>
-<TD >1</TD>
-<TD >28</TD>
-<TD >1</TD>
-<TD >1</TD>
-<TD >1</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >u0|mm_interconnect_0|lcd_s1_agent</TD>
 <TD >280</TD>
 <TD >39</TD>
 <TD >48</TD>
@@ -2352,12 +2448,12 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|btn_s1_translator</TD>
+<TD >u0|mm_interconnect_0|lcd_config_s1_translator</TD>
 <TD >97</TD>
 <TD >6</TD>
 <TD >15</TD>
 <TD >6</TD>
-<TD >36</TD>
+<TD >70</TD>
 <TD >6</TD>
 <TD >6</TD>
 <TD >6</TD>
@@ -2368,7 +2464,23 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|mm_interconnect_0|leds_s1_translator</TD>
+<TD >u0|mm_interconnect_0|lcd_stats_s1_translator</TD>
+<TD >97</TD>
+<TD >6</TD>
+<TD >15</TD>
+<TD >6</TD>
+<TD >70</TD>
+<TD >6</TD>
+<TD >6</TD>
+<TD >6</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >u0|mm_interconnect_0|lcd_crc_s1_translator</TD>
 <TD >97</TD>
 <TD >6</TD>
 <TD >15</TD>
@@ -2417,22 +2529,6 @@
 </TR>
 <TR >
 <TD >u0|mm_interconnect_0|rx_read_s1_translator</TD>
-<TD >97</TD>
-<TD >6</TD>
-<TD >15</TD>
-<TD >6</TD>
-<TD >70</TD>
-<TD >6</TD>
-<TD >6</TD>
-<TD >6</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
-<TD >u0|mm_interconnect_0|lcd_s1_translator</TD>
 <TD >97</TD>
 <TD >6</TD>
 <TD >15</TD>
@@ -2565,7 +2661,7 @@
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
-<TD >384</TD>
+<TD >418</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -3136,15 +3232,15 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|leds</TD>
+<TD >u0|lcd_stats</TD>
 <TD >38</TD>
-<TD >24</TD>
-<TD >24</TD>
-<TD >24</TD>
-<TD >40</TD>
-<TD >24</TD>
-<TD >24</TD>
-<TD >24</TD>
+<TD >31</TD>
+<TD >31</TD>
+<TD >31</TD>
+<TD >33</TD>
+<TD >31</TD>
+<TD >31</TD>
+<TD >31</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -3152,7 +3248,7 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|lcd</TD>
+<TD >u0|lcd_crc</TD>
 <TD >38</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -3161,6 +3257,22 @@
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+<TD >0</TD>
+</TR>
+<TR >
+<TD >u0|lcd_config</TD>
+<TD >38</TD>
+<TD >30</TD>
+<TD >30</TD>
+<TD >30</TD>
+<TD >34</TD>
+<TD >30</TD>
+<TD >30</TD>
+<TD >30</TD>
 <TD >0</TD>
 <TD >0</TD>
 <TD >0</TD>
@@ -3472,28 +3584,12 @@
 <TD >0</TD>
 </TR>
 <TR >
-<TD >u0|btn</TD>
-<TD >5</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >32</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-<TD >0</TD>
-</TR>
-<TR >
 <TD >u0</TD>
-<TD >12</TD>
+<TD >11</TD>
 <TD >7</TD>
 <TD >0</TD>
 <TD >7</TD>
-<TD >57</TD>
+<TD >52</TD>
 <TD >7</TD>
 <TD >7</TD>
 <TD >7</TD>

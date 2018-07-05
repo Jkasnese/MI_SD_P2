@@ -15,3 +15,5 @@ always @ (*) begin
 		out_string <= 16'h6F6B; // <= ok ascii
 	end
 end
+
+endmodule

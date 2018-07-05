@@ -6,7 +6,12 @@ module problema_dois_top(
 	output serial_out,
 	output cts,
 	
-	output [7:0] lcd
+	output [7:0] lcd_data,
+	output lcd_en,
+	output lcd_rs,
+	output lcd_rw,
+	output lcd_backlight
+
 );
 
 // UART
@@ -52,16 +57,19 @@ wire [31:0] wire_crc;
 	);
 
 
-	/*lcd lcd(
+	lcd lcd(
 		.Reset(reset),
 		.Clock(clock),
+
 		.usr_op(wire_lcd_config),
 		.crc(wire_crc),
 		.crc_status(wire_crc_stats),
-		.lcd_data(),
-		.lcd_en(),
-		.lcd_rs(),
-		.lcd_rw()
-	);*/
+
+		.lcd_data(lcd_data),
+		.lcd_en(lcd_en),
+		.lcd_rs(lcd_rs),
+		.lcd_rw(lcd_rw),
+		.lcd_backlight(lcd_backlight)
+	);
 	
 endmodule

@@ -69,11 +69,12 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_R8 -to clock
 set_location_assignment PIN_T8 -to switch
+set_global_assignment -name VERILOG_FILE sources/lcd_write.v
+set_global_assignment -name VERILOG_FILE sources/lcd_crc_stats_dec.v
 set_global_assignment -name VERILOG_FILE sources/lcd.v
 set_global_assignment -name VERILOG_FILE sources/lcd_clk_decoder.v
 set_global_assignment -name VERILOG_FILE sources/lcd_controller.v
 set_global_assignment -name VERILOG_FILE sources/lcd_decoder.v
-set_global_assignment -name VERILOG_FILE sources/tb_clk_decoder.v
 set_global_assignment -name VERILOG_FILE nios/synthesis/nios.v -library nios
 set_global_assignment -name QIP_FILE nios/synthesis/nios.qip
 set_global_assignment -name VERILOG_FILE sources/uart_sender.v

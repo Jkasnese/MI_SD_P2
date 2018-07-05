@@ -45,7 +45,7 @@ module lcd(
 		.status_string(wire_stats_string)
 	);
 
-	/*lcd_controller ctrl(
+	lcd_controller ctrl(
 
 		.Clock(wire_lcd_clk),
 		.Reset(Reset),
@@ -56,17 +56,15 @@ module lcd(
 		.LCD_RW(wire_lcd_rw),
 		.LCD_DADOS(wire_lcd_init_out), 
 		.idle(wire_idle)
-	);*/
+	);
 
-	/*lcd_write lcdw(
+	lcd_write lcdw(
 		.Clock(wire_lcd_clk),
 		.enable(wire_idle),
-		.data_in(wire_crc_ascii),
+		.data_in({wire_crc_ascii, 8'h20, wire_stats_string}),
 		.lcd_data_out(wire_lcd_data_out),
 		.lcd_data_en(wire_lcd_data_en)
 	);
-
-	*/
 
 
 endmodule
