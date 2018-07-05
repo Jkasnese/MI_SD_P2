@@ -11,8 +11,13 @@ module lcd_controller(
 	 output LCD_RS,
 	 output LCD_RW,
 	 output [7:0] LCD_DADOS,
-	 output idle
+	 output idle,
+	 output [3:0] state,
+	 output flag_rst_out
 	);
+	
+	assign flag_rst_out = flag_rst;
+	assign state = reg_state;
 	
 	// Estadoss
 
@@ -38,17 +43,17 @@ module lcd_controller(
               tn_4ms = 6'd4,
               tn_1ms = 6'd1;
 
-    parameter [7:0] letra_A = 8'b01000001; // Testar escrita 
+   parameter [7:0] letra_A = 8'b01000001; // Testar escrita 
 
 		
    reg [3:0] next = 4'b0000, reg_state = 4'b0000;
    reg reg_en = 1'b0, reg_rs = 1'b0; 
 	reg reg_rw = 1'b0;
    reg [7:0] reg_db; // = 8'b11111111;
-   reg [20:0] time_counter = 6'd0;
+   reg [5:0] time_counter = 6'd0;
    reg num_of_lines = 1'b1, cursor_direction = 1'b1;
 	reg [15:0] clk_conversor;
-	reg lcd_clk, reg_idle;
+	reg reg_idle;
 
 	// Flags for delays
 	reg flag_40ms, flag_20ms, flag_10ms, flag_4ms, flag_1ms, flag_rst = 1'b0;
@@ -67,7 +72,7 @@ module lcd_controller(
     assign idle = reg_idle;
 
 	// Flags counter
-	always @ (posedge lcd_clk or posedge Reset or posedge flag_rst) begin
+	always @ (posedge Clock or posedge Reset or posedge flag_rst) begin
 		if (Reset == 1'b1) begin
 			time_counter <= 6'd0;
 			flag_1ms <= 1'b0;
@@ -107,8 +112,11 @@ module lcd_controller(
 	end
 
 	// State machine clock
-    always @ (posedge lcd_clk) begin
-        begin
+    always @ (posedge Clock or posedge Reset) begin
+        if (Reset == 1'b1) begin
+				reg_state <= INIT;
+		  end
+		  else begin
             reg_state <= next;
         end
     end
@@ -116,6 +124,7 @@ module lcd_controller(
 	 
     always @ (*) begin
     	reg_en = 1'b0;
+    	flag_rst = 1'b0;
 	        case (reg_state)
             INIT: begin
             		reg_idle = 1'b0;
