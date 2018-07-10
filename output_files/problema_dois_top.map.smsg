@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Info (10281): Verilog HDL Declaration information at nios_mm_interconnect_0_router_002.sv(48): object "DEFAULT_WR_CHANNEL" differs only in case from object "default_wr_channel" in the same scope
 Info (10281): Verilog HDL Declaration information at nios_mm_interconnect_0_router_002.sv(49): object "DEFAULT_RD_CHANNEL" differs only in case from object "default_rd_channel" in the same scope
 Info (10281): Verilog HDL Declaration information at nios_mm_interconnect_0_router.sv(48): object "DEFAULT_WR_CHANNEL" differs only in case from object "default_wr_channel" in the same scope
@@ -6,3 +7,7 @@ Warning (10268): Verilog HDL information at clk_decoder.v(36): always construct 
 Warning (10268): Verilog HDL information at lcd_controller.v(56): always construct contains both blocking and non-blocking assignments
 Warning (10268): Verilog HDL information at lcd_controller.v(102): always construct contains both blocking and non-blocking assignments
 Info (10281): Verilog HDL Declaration information at lcd_controller.v(11): object "idle" differs only in case from object "IDLE" in the same scope
+=======
+Warning (10268): Verilog HDL information at lcd_controller.v(126): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at lcd_controller.v(14): object "idle" differs only in case from object "IDLE" in the same scope
+>>>>>>> 886aeeb2d64fd09aa63e147fa6c2d49d3fa250be

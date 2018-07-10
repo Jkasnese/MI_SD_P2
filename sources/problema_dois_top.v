@@ -13,7 +13,7 @@ module problema_dois_top(
 	output lcd_backlight
 
 );
-
+/*
 // UART
 wire wire_cts;
 wire [7:0] wire_data_in;
@@ -21,8 +21,9 @@ wire [7:0] wire_data_in;
 wire[7:0] usr_options;
 wire wire_data_read_nios;
 assign cts = wire_cts;
-
+*/
 // LCD
+<<<<<<< HEAD
 wire [1:0] wire_lcd_config;
 wire wire_crc_stats;
 wire [31:0] wire_crc;
@@ -31,6 +32,13 @@ wire lcd_reset, wire_lcd_reset;
 assign lcd_reset = reset | wire_lcd_reset;
 
 
+=======
+reg [1:0] wire_lcd_config = 2'b00;
+reg wire_crc_stats = 1'b0;
+reg[31:0] wire_crc = 32'hFFFFFFFF;
+
+/*	
+>>>>>>> 886aeeb2d64fd09aa63e147fa6c2d49d3fa250be
 	nios u0 (
 		.clk_clk           (clock),           //      clk.clk
 		.lcd_config_export (wire_lcd_config), // lcd_config.export
@@ -42,7 +50,11 @@ assign lcd_reset = reset | wire_lcd_reset;
 		.rx_parity_export  (wire_parity_status),   //  rx_parity.export
 		.rx_read_in_port   (wire_new_data),   //    rx_read.in_port
 		.rx_read_out_port  (wire_data_read_nios),  //           .out_port
+<<<<<<< HEAD
       .lcd_reset_export  (wire_lcd_reset)   //  lcd_reset.export
+=======
+		.lcd_program(program_lcd)
+>>>>>>> 886aeeb2d64fd09aa63e147fa6c2d49d3fa250be
 	);
 		
 	uart uart1(
@@ -59,6 +71,10 @@ assign lcd_reset = reset | wire_lcd_reset;
 	 .parity_status(wire_parity_status),
 	 .new_data(wire_new_data)
 	);
+<<<<<<< HEAD
+=======
+*/
+>>>>>>> 886aeeb2d64fd09aa63e147fa6c2d49d3fa250be
 
 	lcd lcd(
 		.Reset(lcd_reset),
@@ -67,6 +83,7 @@ assign lcd_reset = reset | wire_lcd_reset;
 		.usr_op(wire_lcd_config),
 		.crc(wire_crc),
 		.crc_status(wire_crc_stats),
+		//.program(program_lcd),
 
 		.lcd_data(lcd_data),
 		.lcd_en(lcd_en),
