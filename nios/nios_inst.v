@@ -8,6 +8,7 @@
 		.rx_options_export (<connected-to-rx_options_export>), // rx_options.export
 		.rx_parity_export  (<connected-to-rx_parity_export>),  //  rx_parity.export
 		.rx_read_in_port   (<connected-to-rx_read_in_port>),   //    rx_read.in_port
-		.rx_read_out_port  (<connected-to-rx_read_out_port>)   //           .out_port
+		.rx_read_out_port  (<connected-to-rx_read_out_port>),  //           .out_port
+		.lcd_reset_export  (<connected-to-lcd_reset_export>)   //  lcd_reset.export
 	);
 

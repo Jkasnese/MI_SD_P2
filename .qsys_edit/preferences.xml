@@ -8,7 +8,8 @@
    <inputclock preferredWidth="121" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library" />
+ <library
+   expandedCategories="Project,Library/Processors and Peripherals,Library/Processors and Peripherals/Peripherals,Library" />
  <window width="1855" height="1056" x="65" y="24" />
  <generation block_symbol_file="0" path="_PROJECT_NAME_" />
 </preferences>

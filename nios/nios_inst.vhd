@@ -9,7 +9,8 @@
 			rx_options_export : out std_logic_vector(7 downto 0);                     -- export
 			rx_parity_export  : in  std_logic                     := 'X';             -- export
 			rx_read_in_port   : in  std_logic                     := 'X';             -- in_port
-			rx_read_out_port  : out std_logic                                         -- out_port
+			rx_read_out_port  : out std_logic;                                        -- out_port
+			lcd_reset_export  : out std_logic                                         -- export
 		);
 	end component nios;
 
@@ -24,6 +25,7 @@
 			rx_options_export => CONNECTED_TO_rx_options_export, -- rx_options.export
 			rx_parity_export  => CONNECTED_TO_rx_parity_export,  --  rx_parity.export
 			rx_read_in_port   => CONNECTED_TO_rx_read_in_port,   --    rx_read.in_port
-			rx_read_out_port  => CONNECTED_TO_rx_read_out_port   --           .out_port
+			rx_read_out_port  => CONNECTED_TO_rx_read_out_port,  --           .out_port
+			lcd_reset_export  => CONNECTED_TO_lcd_reset_export   --  lcd_reset.export
 		);
 

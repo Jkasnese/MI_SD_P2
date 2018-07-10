@@ -1,5 +1,5 @@
 Assembler report for problema_dois_top
-Tue Jul  3 19:07:05 2018
+Tue Jul 10 00:22:39 2018
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -39,11 +39,11 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Jul  3 19:07:05 2018 ;
+; Assembler Status      ; Successful - Tue Jul 10 00:22:39 2018 ;
 ; Revision Name         ; problema_dois_top                     ;
 ; Top-level Entity Name ; problema_dois_top                     ;
 ; Family                ; Cyclone IV E                          ;
-; Device                ; EP4CE22F17C6                          ;
+; Device                ; EP4CE30F23C7                          ;
 +-----------------------+---------------------------------------+
 
 
@@ -78,9 +78,9 @@ agreement for further details.
 +----------------+--------------------------------+
 ; Option         ; Setting                        ;
 +----------------+--------------------------------+
-; Device         ; EP4CE22F17C6                   ;
-; JTAG usercode  ; 0x002928E9                     ;
-; Checksum       ; 0x002928E9                     ;
+; Device         ; EP4CE30F23C7                   ;
+; JTAG usercode  ; 0x0039DFD3                     ;
+; Checksum       ; 0x0039DFD3                     ;
 +----------------+--------------------------------+
 
 
@@ -90,14 +90,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Tue Jul  3 19:07:03 2018
+    Info: Processing started: Tue Jul 10 00:22:35 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off problema_dois -c problema_dois_top
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 864 megabytes
-    Info: Processing ended: Tue Jul  3 19:07:05 2018
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 866 megabytes
+    Info: Processing ended: Tue Jul 10 00:22:39 2018
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:03
 
 

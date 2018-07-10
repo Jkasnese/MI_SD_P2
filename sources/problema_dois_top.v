@@ -26,8 +26,11 @@ assign cts = wire_cts;
 wire [1:0] wire_lcd_config;
 wire wire_crc_stats;
 wire [31:0] wire_crc;
+wire lcd_reset, wire_lcd_reset;
 
-	
+assign lcd_reset = reset | wire_lcd_reset;
+
+
 	nios u0 (
 		.clk_clk           (clock),           //      clk.clk
 		.lcd_config_export (wire_lcd_config), // lcd_config.export
@@ -39,6 +42,7 @@ wire [31:0] wire_crc;
 		.rx_parity_export  (wire_parity_status),   //  rx_parity.export
 		.rx_read_in_port   (wire_new_data),   //    rx_read.in_port
 		.rx_read_out_port  (wire_data_read_nios),  //           .out_port
+      .lcd_reset_export  (wire_lcd_reset)   //  lcd_reset.export
 	);
 		
 	uart uart1(
@@ -56,9 +60,8 @@ wire [31:0] wire_crc;
 	 .new_data(wire_new_data)
 	);
 
-
 	lcd lcd(
-		.Reset(reset),
+		.Reset(lcd_reset),
 		.Clock(clock),
 
 		.usr_op(wire_lcd_config),

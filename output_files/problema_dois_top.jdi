@@ -1,9 +1,9 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="7f2c288cf58921cd6296"/>
+    <hash md5_digest_80b="2e200d13bd4014486419"/>
   </project>
   <file_info>
-    <file device="EP4CE22F17C6" path="problema_dois_top.sof" usercode="0xFFFFFFFF"/>
+    <file device="EP4CE30F23C7" path="problema_dois_top.sof" usercode="0xFFFFFFFF"/>
   </file_info>
   <hub_info hub_ir_width="4" ir_width="2" node_addr_width="1" node_count="1"/>
   <node_info>
@@ -99,7 +99,7 @@
     </sld_info>
     <sld_info hpath="nios:u0" name="u0">
       <assignment_values>
-        <assignment_value text="QSYS_NAME nios HAS_SOPCINFO 1 GENERATION_ID 1530596798"/>
+        <assignment_value text="QSYS_NAME nios HAS_SOPCINFO 1 GENERATION_ID 1530796738"/>
       </assignment_values>
       <parameters/>
     </sld_info>

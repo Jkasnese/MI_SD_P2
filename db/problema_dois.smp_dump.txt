@@ -5,19 +5,20 @@ reg_state.WAIT 0
 reg_state.SEND 1 
 
 State Machine - |problema_dois_top|lcd:lcd|lcd_controller:ctrl|reg_state
-Name reg_state.ENTRY_MODE reg_state.DISPLAY_CLEAR reg_state.IDLE reg_state.DISPLAY_ON reg_state.CONTRAST reg_state.FOLLOWER_CONTROL reg_state.POWER_CONTROL reg_state.OSC_FREQ reg_state.FUNCTION_SET reg_state.CONFIG_2 reg_state.CONFIG reg_state.0000 
-reg_state.0000 0 0 0 0 0 0 0 0 0 0 0 0 
-reg_state.CONFIG 0 0 0 0 0 0 0 0 0 0 1 1 
-reg_state.CONFIG_2 0 0 0 0 0 0 0 0 0 1 0 1 
-reg_state.FUNCTION_SET 0 0 0 0 0 0 0 0 1 0 0 1 
-reg_state.OSC_FREQ 0 0 0 0 0 0 0 1 0 0 0 1 
-reg_state.POWER_CONTROL 0 0 0 0 0 0 1 0 0 0 0 1 
-reg_state.FOLLOWER_CONTROL 0 0 0 0 0 1 0 0 0 0 0 1 
-reg_state.CONTRAST 0 0 0 0 1 0 0 0 0 0 0 1 
-reg_state.DISPLAY_ON 0 0 0 1 0 0 0 0 0 0 0 1 
-reg_state.IDLE 0 0 1 0 0 0 0 0 0 0 0 1 
-reg_state.DISPLAY_CLEAR 0 1 0 0 0 0 0 0 0 0 0 1 
-reg_state.ENTRY_MODE 1 0 0 0 0 0 0 0 0 0 0 1 
+Name reg_state.WRITE_CHAR reg_state.ENTRY_MODE reg_state.DISPLAY_CLEAR reg_state.IDLE reg_state.DISPLAY_ON reg_state.CONTRAST reg_state.FOLLOWER_CONTROL reg_state.POWER_CONTROL reg_state.OSC_FREQ reg_state.FUNCTION_SET reg_state.CONFIG_2 reg_state.CONFIG reg_state.0000 
+reg_state.0000 0 0 0 0 0 0 0 0 0 0 0 0 0 
+reg_state.CONFIG 0 0 0 0 0 0 0 0 0 0 0 1 1 
+reg_state.CONFIG_2 0 0 0 0 0 0 0 0 0 0 1 0 1 
+reg_state.FUNCTION_SET 0 0 0 0 0 0 0 0 0 1 0 0 1 
+reg_state.OSC_FREQ 0 0 0 0 0 0 0 0 1 0 0 0 1 
+reg_state.POWER_CONTROL 0 0 0 0 0 0 0 1 0 0 0 0 1 
+reg_state.FOLLOWER_CONTROL 0 0 0 0 0 0 1 0 0 0 0 0 1 
+reg_state.CONTRAST 0 0 0 0 0 1 0 0 0 0 0 0 1 
+reg_state.DISPLAY_ON 0 0 0 0 1 0 0 0 0 0 0 0 1 
+reg_state.IDLE 0 0 0 1 0 0 0 0 0 0 0 0 1 
+reg_state.DISPLAY_CLEAR 0 0 1 0 0 0 0 0 0 0 0 0 1 
+reg_state.ENTRY_MODE 0 1 0 0 0 0 0 0 0 0 0 0 1 
+reg_state.WRITE_CHAR 1 0 0 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - |problema_dois_top|nios:u0|nios_nios2_gen2_0:nios2_gen2_0|nios_nios2_gen2_0_cpu:cpu|nios_nios2_gen2_0_cpu_nios2_oci:the_nios_nios2_gen2_0_cpu_nios2_oci|nios_nios2_gen2_0_cpu_debug_slave_wrapper:the_nios_nios2_gen2_0_cpu_debug_slave_wrapper|nios_nios2_gen2_0_cpu_debug_slave_tck:the_nios_nios2_gen2_0_cpu_debug_slave_tck|DRsize
 Name DRsize.101 DRsize.100 DRsize.011 DRsize.010 DRsize.001 DRsize.000 

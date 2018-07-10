@@ -26,8 +26,8 @@ module lcd(
 
 	assign lcd_data = wire_idle ?  wire_lcd_init_out : wire_lcd_data_out;
 	assign lcd_en = wire_idle ? wire_lcd_data_en : wire_lcd_en;	
-	assign lcd_rs = wire_idle ? 1'b1 : wire_lcd_rs;
-	assign lcd_rw = wire_idle ? 1'b0 : wire_lcd_rw;
+	assign lcd_rs = wire_idle ? 1'b1 : 1'b0;
+	assign lcd_rw = 1'b0;
 	assign lcd_backlight = 1'b1;
 
 	lcd_clk_decoder clkd(
@@ -47,14 +47,12 @@ module lcd(
 
 	lcd_controller ctrl(
 
-		.Clock(wire_lcd_clk),
+		.Clock(Clock),
 		.Reset(Reset),
-		.Modo_OP(usr_op),
+		.user_opt(usr_op),
 
 		.LCD_EN(wire_lcd_en),
-		.LCD_RS(wire_lcd_rs),
-		.LCD_RW(wire_lcd_rw),
-		.LCD_DADOS(wire_lcd_init_out), 
+		.LCD_DATA(wire_lcd_init_out), 
 		.idle(wire_idle)
 	);
 

@@ -8,19 +8,16 @@ table: .word 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFF
 # Reads byte from RS232 and stores it into r10
 __read_byte:
 
-movia r15, 0x30f0 # Memory location of the new byte
-movia r18, 0x30c0 # Memory location of the data read sign.
-
 wait_data:
 ldb r16, 0x0(r18)
 bgt r16, r0, read
-stb r0, 0x0(r18) # If there is no new data, it means you read the last data and the fpga already knows.
 br wait_data
 
 read:
 ldbu r10, 0x0(r15) # Reads byte
 movia r11, 0x1 
 stb r11, 0x0(r18) r18 # Signals that byte was read.
+stb r0, 0x0(r18) # If there is no new data, it means you read the last data and the fpga already knows.
 ret
 
 .global main 
@@ -36,6 +33,9 @@ movui r9, 0x04C1
 slli r9, r9, 0x10
 ori r9, r9, 0x1DB7
 
+# RS232 config
+movia r15, 0x30f0 # Memory location of the new byte
+movia r18, 0x30c0 # Memory location of the data read sign.
 
 # TABLE CALCULATION
 mov r7, r17 # r7 gets permanent table position to iterate upon
@@ -118,10 +118,9 @@ movi r3, 0x0 # i
 crc_loop:
   bge r3, r8, crc2lcd
 
-mov r4, r2 # byte "leaving" register tru right. To be xored with msg
-
+# byte "leaving" register tru right. To be xored with msg
 # gets r2 high byte into r4
-andhi r4, r4, 0xFF00
+andhi r4, r2, 0xFF00
 
 slli r2, r2, 0x8 # removes most significant byte
 
@@ -129,9 +128,9 @@ srli r4, r4, 0x18
 
 call __read_byte # Gets bytes from msg into r10
 
-mov r21, r10 # r21 holds the last received byte. r22 holds the last received word (crc)
+# r10 holds the last received byte. r22 holds the last received word (crc)
 slli r22, r22, 0x8
-or r22, r22, r21
+or r22, r22, r10
 
 xor r4, r4, r10 # xor bytes from msg and reg
 
@@ -152,11 +151,13 @@ crc2lcd:
 movia r3, 0x3090 # Second argument is the address of the LCD in the Nios.
 movia r5, 0x3080 # Second argument is the address of the CRC Status in the Nios core.
 movia r6, 0x3070 # Second argument is the address of the LCD Config in the Nios core.
+movia r10, 0x3060 # Reset LCD Address
 movia r7, 0x0 # LCD Configuration. LSB = cursor direction (0 left / 1 right). MSB = Number of lines (0 one line / 1 two lines)
 stw r7, 0x0(r6)
+movia r1, 0x1 # Reset LCD
 
 # r22 contains the received crc. r2 contains the calculated crc.
-beq r22, r2, crcok
+beq r0, r2, crcok
 
 movia r4, 0x1
 
@@ -166,8 +167,10 @@ crcok:
 mov r4, r0
 
 store_crc:
-stw r2, 0x0(r3)
+stw r22, 0x0(r3)
 stw r4, 0x0(r5)
+stw r1, 0x0(r10)
+stw r0, 0x0(r10)
 br begin_transmission
 
 
